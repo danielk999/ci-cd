@@ -9,5 +9,14 @@ services:
         - 0.0.0.0:9092:9092
       networks:
        - nexus
+  server:
+    image: danielk999/ci-cd:multistage_compose 
+    build: 
+      context: .
+      dockerfile: Dockerfile-pipelines
+    networks:
+      - nexus
+    depends_on:
+      - sonarqube
 networks:
   nexus:
